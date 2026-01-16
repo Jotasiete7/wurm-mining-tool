@@ -1,5 +1,0 @@
-{
-  "name": "Wurm Mining Optimizer",
-  "description": "A tactical decision engine for Wurm Online miners. Translates skill and tool quality into actionable mining recommendations based on game mechanics and historical data.",
-  "requestFramePermissions": []
-}
