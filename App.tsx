@@ -6,10 +6,11 @@ import { AnalysisCard } from './components/AnalysisCard';
 import { ProgressionChart } from './components/ProgressionChart';
 import { VerificationLab } from './components/VerificationLab';
 import { ReferenceGuide } from './components/ReferenceGuide';
-import { EfficiencyStatus } from './types';
-import { Header } from '@antigravity/layout/Header';
-import { LanguageSwitch } from '@antigravity/modules/LanguageSwitch';
-import agStyles from '@antigravity/layout/Header.module.css';
+import { EfficiencyStatus, Language } from './types';
+import { translations } from './translations';
+import { Header } from '@ecossistema-guilda/layout/Header';
+import { LanguageSwitch } from '@ecossistema-guilda/modules/LanguageSwitch';
+import agStyles from '@ecossistema-guilda/layout/Header.module.css';
 
 const App: React.FC = () => {
   const [skill, setSkill] = useState<number>(30);
@@ -26,7 +27,7 @@ const App: React.FC = () => {
   const bestOre = analyses.find(a => a.status === EfficiencyStatus.OPTIMAL) || analyses[0];
 
   return (
-    <div className="min-h-screen bg-wurm-bg text-wurm-text p-4 md:p-8 font-sans selection:bg-wurm-accent selection:text-black flex flex-col">
+    <>
       <Header 
         currentToolId="mining"
         brandSubName={t.title}
@@ -44,21 +45,12 @@ const App: React.FC = () => {
           />
         }
       />
+      <div className="min-h-screen bg-wurm-bg text-wurm-text px-4 pb-4 md:px-8 md:pb-8 font-sans selection:bg-wurm-accent selection:text-black flex flex-col">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8 flex-grow w-full">
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8 flex-grow w-full">
-
-        {/* Header & Controls - Styled like the Guild Site Sidebar */}
-        <div className="lg:col-span-4 flex flex-col gap-6">
-          <div className="mb-4 text-center lg:text-left">
-            <h1 className="text-4xl font-serif font-bold text-white mb-2 tracking-tight">
-              A Guilda <span className="text-lg font-mono text-wurm-accent font-normal block mt-1">{t.title}</span>
-            </h1>
-            <p className="text-wurm-muted text-xs font-mono leading-relaxed max-w-md mx-auto lg:mx-0">
-              // {t.subtitle}
-            </p>
-          </div>
-
-          <div className="bg-wurm-panel p-6 rounded border border-wurm-border shadow-2xl shadow-black">
+          {/* Controls - Styled like the Guild Site Sidebar */}
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <div className="bg-wurm-panel p-6 rounded border border-wurm-border shadow-2xl shadow-black">
             <h2 className="text-xs font-bold text-wurm-accent uppercase tracking-widest mb-6 border-b border-wurm-border pb-4 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-wurm-accent animate-pulse"></span>
               {t.inputSection}
@@ -198,6 +190,7 @@ const App: React.FC = () => {
         </p>
       </footer>
     </div>
+    </>
   );
 };
 
