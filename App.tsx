@@ -7,8 +7,9 @@ import { ProgressionChart } from './components/ProgressionChart';
 import { VerificationLab } from './components/VerificationLab';
 import { ReferenceGuide } from './components/ReferenceGuide';
 import { EfficiencyStatus } from './types';
-import { translations, Language } from './translations';
-import EcosystemDropdown from './components/EcosystemDropdown';
+import { Header } from '@antigravity/layout/Header';
+import { LanguageSwitch } from '@antigravity/modules/LanguageSwitch';
+import agStyles from '@antigravity/layout/Header.module.css';
 
 const App: React.FC = () => {
   const [skill, setSkill] = useState<number>(30);
@@ -26,14 +27,23 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-wurm-bg text-wurm-text p-4 md:p-8 font-sans selection:bg-wurm-accent selection:text-black flex flex-col">
-      {/* Top-right controls: Language + Ecosystem */}
-      <div className="fixed top-4 right-4 z-50 flex items-center gap-3 text-[10px] font-mono tracking-widest text-wurm-muted uppercase">
-        <button onClick={() => setLang('en')} className={`hover:text-wurm-accent transition-colors ${lang === 'en' ? 'text-wurm-accent underline' : ''}`}>EN</button>
-        <button onClick={() => setLang('pt')} className={`hover:text-wurm-accent transition-colors ${lang === 'pt' ? 'text-wurm-accent underline' : ''}`}>PT</button>
-        <button onClick={() => setLang('ru')} className={`hover:text-wurm-accent transition-colors ${lang === 'ru' ? 'text-wurm-accent underline' : ''}`}>RU</button>
-        <span className="opacity-20">|</span>
-        <EcosystemDropdown />
-      </div>
+      <Header 
+        currentToolId="mining"
+        brandSubName={t.title}
+        lang={lang as 'en' | 'pt'}
+        extraModules={
+          <LanguageSwitch 
+            lang={lang} 
+            onLanguageChange={(l) => setLang(l as Language)} 
+            languages={[
+              { code: 'en', label: 'EN' },
+              { code: 'pt', label: 'PT' },
+              { code: 'ru', label: 'RU' }
+            ]}
+            styles={agStyles}
+          />
+        }
+      />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8 flex-grow w-full">
 
