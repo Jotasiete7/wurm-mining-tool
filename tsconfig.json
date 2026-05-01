@@ -17,9 +17,9 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@antigravity/*": ["../antigravity/*"]
+      "@ecossistema-guilda/*": ["./ecossistema-guilda/*"]
     }
   },
-  "include": ["src", "*.tsx", "*.ts"],
+  "include": ["src", "*.tsx", "*.ts", "ecossistema-guilda/**/*.ts", "ecossistema-guilda/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
